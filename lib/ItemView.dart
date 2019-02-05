@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:tester/item.dart';
 
-
 class ItemView extends StatefulWidget {
-  ItemView(this.item
-  );
+  ItemView(this.item);
   final Item item;
 
   @override
@@ -19,7 +16,7 @@ class ItemViewState extends State<ItemView> {
   void initState() {
     super.initState();
     itemState = widget.item;
-   /*  ItemDatabase db = ItemDatabase();
+    /*  ItemDatabase db = ItemDatabase();
     db.getItem(ItemState.id).then((Item) {
       setState(() => ItemState.favored = Item.favored);
     }); */
@@ -36,57 +33,78 @@ class ItemViewState extends State<ItemView> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-       // initiallyExpanded: itemState.isExpanded ?? false,
-       // onExpansionChanged: (b) => itemState.isExpanded = b,
+         initiallyExpanded: itemState.isExpanded ?? false,
+         onExpansionChanged: (b) => itemState.isExpanded = b,
         children: <Widget>[
-          Container(
+         Container(
             padding: EdgeInsets.all(10.0),
             child: RichText(
               text: TextSpan(
-                text: itemState.description!=null?itemState.description[0]:("no description supplied"),
+                text: itemState.description != null
+                    ? itemState.description[0]
+                    : (""),
                 style: TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w300,
                 ),
               ),
             ),
-          )
+          ),
         ],
-       /*  leading: IconButton(
-         icon: itemState.favored ? Icon(Icons.star) : Icon(Icons.star_border),
-          color: Colors.white,
-          onPressed: () {
-           //onPressed();
-          },
-        ), */
+        
+         leading: IconButton(
+           icon: itemState.favored ? Icon(Icons.star) : Icon(Icons.star_border),
+           color: Colors.white,
+           onPressed: () {
+             //onPressed();
+           },
+         ),
         title: Container(
-            height: 200.0,
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              children: <Widget>[            
-                 itemState.preview != null
-                     ? Hero(
-                         child: Image.network(
-                             itemState.preview[0]),
-                   tag: Text ('22222'),
-                     )  
-                : Container(), 
-                Expanded(
-                    child: Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
+          height: 200.0,
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              itemState.preview != null
+                  ? Hero(
+                      child: Image.network(itemState.preview[0]),
+                      tag: Text('22222'),
+                    )
+                  : Container(),
+              Expanded(
+                  child: Stack(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Title: ",
+                              maxLines: 10,
+                            ),
+                            Text(
                               itemState.title[0],
                               maxLines: 10,
                             ),
-                          ),
-                        ),
-                    ],
-                ))
-              ],
-            )));
+                            Text(
+                              itemState.provider != null
+                                  ? itemState.provider[0]
+                                  : ("jjjj"),
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ]),
+                    ),
+                  ),
+                ],
+              )),
+            ],
+          ),
+        ));
   }
 }

@@ -14,9 +14,12 @@ class Item extends Object{
   List<String> description;
   @JsonKey(name:"edmPreview", disallowNullValue: false, required: false)
   List<String> preview;
+  @JsonKey(name:"provider", disallowNullValue: false, required: false)
+  List<String> provider;
+  bool favored, isExpanded;
 
   Item({ this.title,
-  this.country, this.creator, this.description, this.preview});
+  this.country, this.creator, this.description, this.preview, this.provider,this.favored, this.isExpanded});
   
   factory Item.fromJson(Map<String, dynamic> parsedItems) => _$ItemFromJson(parsedItems);
 
