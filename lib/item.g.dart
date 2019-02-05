@@ -20,6 +20,6 @@ Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
       'title': instance.title,
       'country': instance.country,
       'dcCreator': instance.creator,
-      'dcDescription': instance.description,
+      'dcDescription': instance.description ,
       'edmPreview': instance.preview
     };

@@ -4,7 +4,8 @@ import 'package:tester/item.dart';
 
 
 class ItemView extends StatefulWidget {
-  ItemView(this.item);
+  ItemView(this.item
+  );
   final Item item;
 
   @override
@@ -42,7 +43,7 @@ class ItemViewState extends State<ItemView> {
             padding: EdgeInsets.all(10.0),
             child: RichText(
               text: TextSpan(
-                //text: itemState.overview,
+                text: itemState.description!=null?itemState.description[0]:("no description supplied"),
                 style: TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w300,
@@ -62,19 +63,28 @@ class ItemViewState extends State<ItemView> {
             height: 200.0,
             padding: EdgeInsets.all(10.0),
             child: Row(
-              children: <Widget>[
-                //itemState.preview != null
-                    /* ? Hero(
-                        child: Image.network(
-                            "https://image.tmdb.org/t/p/w92${ItemState.posterPath}"),
-                        tag: itemState.id,
-                      ) */
-                    Container(),
+              children: <Widget>[            
+                 itemState.preview != null
+                     ? Hero(
+                         child: Image.network(
+                             itemState.preview[0]),
+                   tag: Text ('22222'),
+                     )  
+                : Container(), 
                 Expanded(
-                    child: Text(
-                  itemState.title[0],
-                  textAlign: TextAlign.center,
-                  maxLines: 10,
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              itemState.title[0],
+                              maxLines: 10,
+                            ),
+                          ),
+                        ),
+                    ],
                 ))
               ],
             )));
